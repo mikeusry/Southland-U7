@@ -188,46 +188,6 @@ div.top-button a {
 
 /* @end */
 
-/* @group Shopping Cart */
-
-#block-commerce-cart-cart {
-	width: 400px;
-	float: right;
-}
-
-#block-commerce-cart-cart div.field-content a {
-	color: #3A793E;
-}
-
-#block-commerce-cart-cart div.view-content {
-	margin-bottom: 10px;
-	border-bottom: thin solid #d5d5d5;
-}
-
-#block-commerce-cart-cart  h2.block-title {
-	color: #0C652E;
-}
-
-div.cart-empty-block {
-	color: #424242;
-}
-
-#block-commerce-cart-cart .views-field-quantity, #block-commerce-cart-cart .views-field-field-cart-name, #block-commerce-cart-cart .views-field-line-item-title, #block-commerce-cart-cart .views-field-field-cart-name {
-	display: inline;
-	float: left;
-	margin-right: 5px;
-}
-
-#block-commerce-cart-cart .views-field-field-cart-name {
-	width: 200px;
-}
-#block-commerce-cart-cart .views-field-line-item-title {
-	width: 110px;
-}
-
-
-/* @end */
-
 /* @group Main Navigation */
 
 
@@ -820,7 +780,6 @@ ul.quicktabs-tabs.quicktabs-style-basic li.active a{
 
 /* @end */
 
-
 /* @group Storefront */
 
 
@@ -828,7 +787,7 @@ ul.quicktabs-tabs.quicktabs-style-basic li.active a{
 div.view-uc-catalog div.views-row a img {
 	float: left;
 	margin-right: 10px;
-	margin-bottom: 5px;
+	margin-bottom: 30px;
 }
 
 div.view-uc-catalog div.views-row {
@@ -836,6 +795,7 @@ div.view-uc-catalog div.views-row {
 	border-top-width: thin;
 	padding-top: 10px;
 	min-height: 150px;
+	overflow: hidden;
 }
 
 div.view-uc-catalog div.views-row h2, 
@@ -850,6 +810,40 @@ div.view-uc-catalog div.views-row a {
 div.view-uc-catalog div.views-row h3 {
 	margin-bottom: 5px;
 }
+
+/* @group Shopping Cart */
+
+#block-uc-cart-cart {
+	width: 400px;
+	float: right;
+}
+table {
+  border: 1px none #CCC;
+  width: 100%;
+}
+
+table.cart-block-summary {
+	border-top: thin solid green;
+}
+tr.even td {
+	background-color: transparent;
+}
+
+tr.odd td {
+  background: transparent;
+}
+tr:hover td,
+tr.even:hover td.active,
+tr.odd:hover td.active {
+  background: transparent;
+	opacity: 0.76;
+}
+
+#block-uc-cart-cart li.cart-block-checkout.active {
+	font-weight: bold;
+	font-size: 1.2em;
+}
+/* @end */
 
 
 /* @end */
@@ -874,27 +868,25 @@ div.view-uc-catalog div.views-row h3 {
 
 /* @group Checkout */
 
+/* @group Checkout Page */
+
+form#uc-cart-checkout-form legend span.fieldset-legend a {
+	font-weight: bold;
+	color: black;
+}
+
+#edit-panes-customer-new-account {
+	margin-left: 50px;
+	font-size: .85em;
+}
+
+/* @end */
+
 #user-login-form legend span.fieldset-legend {
 	display: none;
 }
 
-#edit-commerce-payment-payment-method div.form-item.form-type-radio.form-item-commerce-payment-payment-method {
-	display: none;
-}
-
-div.commerce-extra-login-page-description {
-	font: italic bold 1.5em "open sans";
-	color: #2E6030;
-}
-
 #user-login-form div.fieldset-wrapper div.item-list ul {
-}
-
-input#edit-continue.checkout-continue.form-submit.checkout-processed {
-	background-color: #2E6030;
-	color: #2E6030;
-	font: bold 1.05em "open sans";
-	margin-right: 10px;
 }
 
 #user-login-form div.fieldset-wrapper div.item-list ul li.first a, #user-login-form li.last a.init-modal-forms-password-processed {
@@ -916,10 +908,6 @@ input#edit-continue.checkout-continue.form-submit.checkout-processed {
 
 #edit-login-pane-name, #edit-login-pane-pass {
 	width: 50%;
-}
-
-#block-commerce-checkout-progress-indication li.last {
-	background-image: none;
 }
 
 div.form-item.form-type-select.form-item-customer-profile-billing-commerce-customer-address-und-0-country {
@@ -948,59 +936,6 @@ fieldset#edit-cart-contents.cart_contents.form-wrapper, fieldset#edit-customer-p
 
 div.addressfield-container-inline label {
 	margin-top: 10px;
-}
-
-form#commerce-checkout-form-checkout div.form-item {
-	margin-top: 5px;
-	margin-bottom: 5px;
-}
-
-
-
-
-
-#block-commerce-checkout-progress-indication ul.commerce-checkout-progress li.active.checkout {
-	margin-top: 0;
-	font-size: 2.25em;
-}
-
-/* @group Progress */
-
-div.easy-checkout {
-	font-size: .85em;
-	color: gray;
-	font-style: italic;
-	text-align: center;
-	border-top: thin solid green;
-	padding-top: 10px;
-}
-
-#block-block-11 div.block-inner.clearfix div.content.clearfix p {
-	text-align: center;
-	font-weight: bold;
-	color: #2E6030;
-	margin-bottom: 5px;
-}
-
-div.block-inner div.item-list ul.commerce-checkout-progress li {
-	text-align: center;
-	clear: both;
-	display: block;
-	color: #2E6030;
-	font-size: 1.5em;
-	background: url(../images/humic-acid-checkout.jpg) no-repeat center bottom;
-	padding-bottom: 55px;
-	margin-bottom: 0;
-	margin-left: 0;
-	margin-top: 0;
-}
-
-
-
-/* @end */
-
-.page-checkout #edit-checkout {
-	display: none;
 }
 
 
