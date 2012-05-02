@@ -3,6 +3,7 @@
 	http://southland-u.biz/sites/all/themes/Southland/css/global.css?m3civ0
 	http://southland-u.biz/sites/all/themes/Southland/css/global.css?m3cjw8
 	http://southland-u.biz/sites/all/themes/Southland/css/global.css?m3czam
+	http://southland7u.loc/sites/all/themes/Southland/css/global.css?m3czam
 */
 
 /* This file will hold styles for the mobile version of your website (mobile first). */
@@ -878,6 +879,39 @@ form#uc-cart-checkout-form legend span.fieldset-legend a {
 #edit-panes-customer-new-account {
 	margin-left: 50px;
 	font-size: .85em;
+}
+
+a.update-cart, a.continue {
+	text-align: center;
+	border-radius: 10px;
+	background-color: green;
+	color: white;
+	text-decoration: none;
+	padding: 3px 10px;
+}
+
+#block-block-15 img {
+	float: left;
+}
+
+div.always, div.secure {
+	font-weight: bold;
+	text-align: left;
+	font-size: 2.6em;
+	line-height: 1em;
+}
+
+div.cards {
+}
+
+
+
+div.so-cartlinks {
+	margin-bottom: 10px;
+}
+
+#block-block-16 {
+	text-align: center;
 }
 
 /* @end */
