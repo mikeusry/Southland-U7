@@ -1,4 +1,9 @@
-/* @override http://southland-u.biz/sites/all/themes/Southland/css/global.css?m37an8 */
+/* @override 
+	http://southland-u.biz/sites/all/themes/Southland/css/global.css?m37an8
+	http://southland-u.biz/sites/all/themes/Southland/css/global.css?m3civ0
+	http://southland-u.biz/sites/all/themes/Southland/css/global.css?m3cjw8
+	http://southland-u.biz/sites/all/themes/Southland/css/global.css?m3czam
+*/
 
 /* This file will hold styles for the mobile version of your website (mobile first). */
 
@@ -35,6 +40,20 @@ img.left {
 	margin-right: 10px;
 	margin-bottom: 10px;
 	float: left;
+}
+
+button:focus,
+button:active,
+input:focus,
+input:active,
+select:focus,
+select:active,
+textarea:focus,
+textarea:active {
+  -moz-box-shadow: #06f 0 0 2px;
+  -webkit-box-shadow: #06f 0 0 2px;
+  box-shadow: #06f 0 0 2px;
+  z-index: 1; /* For Opera */
 }
 
 /* @group Zones.Sections.Regions */
@@ -400,7 +419,7 @@ div.field-name-field-node-ref.field-type-entityreference {
 	margin-top: 10px;
 }
 
-#block-block-1 {
+#block-block-1, #block-block-14 {
 	text-align: center;
 }
 
@@ -532,8 +551,8 @@ div.product-info.sell-price span.uc-price {
 	margin-right: 10px;
 }
 
-input#edit-submit-1.node-add-to-cart.form-submit {
-		width: 220px;
+.node-add-to-cart.form-submit, .node-add-to-cart.form-submit:hover {
+	width: 220px;
 	height: 60px;
 	color: white;
 	text-shadow: #000000 0 0 0px;
@@ -546,8 +565,18 @@ input#edit-submit-1.node-add-to-cart.form-submit {
 	letter-spacing: 3px;
 	border-style: none;
 	background: url(../images/Organic-Cart.png) no-repeat 0;
-	float: right;
+	margin-left: 10px;
 }
+
+div.attributes div.form-type-select {
+	float: left;
+}
+
+div.form-type-uc-quantity {
+	float: left;
+	margin-left: 10px;
+}
+
 
 div.field-name-field-highlight {
 	margin-left: 10px;
@@ -664,6 +693,11 @@ div.node-product-display div.field-name-body div.field-item {
 	list-style-position: inside;
 }
 
+#views_slideshow_cycle_main_testimonials-block_1 {
+	margin-left: 20px;
+	font-style: italic;
+}
+
 /* @group Right Sidebar */
 
 #block-views-testimonials-block-1 h2.block-title, #block-views-articles-block-1 h2.block-title, #block-views-testimonials-block-1 div.view-header  {
@@ -702,8 +736,12 @@ div.node-product-display div.field-name-body div.field-item {
 
 /* @group Quicktabs */
 
-#block-ds-extras-product-benefits ul, #block-ds-extras-application-rates ul {
+.quicktabs-style-basic ul {
 	list-style-position: inside;
+}
+
+.quicktabs-style-basic div.block-inner.clearfix h2.block-title {
+	text-align: left;
 }
 
 
@@ -780,11 +818,6 @@ ul.quicktabs-tabs.quicktabs-style-basic li.active a{
 }
 /* @end */
 
-#views_slideshow_cycle_main_testimonials-block_1 {
-	margin-left: 20px;
-	font-style: italic;
-}
-
 /* @end */
 
 
@@ -792,29 +825,29 @@ ul.quicktabs-tabs.quicktabs-style-basic li.active a{
 
 
 
-div.view-online-store div.views-row a img {
+div.view-uc-catalog div.views-row a img {
 	float: left;
 	margin-right: 10px;
-	margin-bottom: 30px;
+	margin-bottom: 5px;
 }
 
-div.view-online-store div.views-row {
+div.view-uc-catalog div.views-row {
 	border-top-style: solid;
 	border-top-width: thin;
 	padding-top: 10px;
 	min-height: 150px;
 }
 
-div.view-online-store div.views-row h2, 
-div.view-online-store img.product-left {
+div.view-uc-catalog div.views-row h2, 
+div.view-uc-catalog img.product-left {
 display: none;
 }
 
-div.view-online-store div.views-row a {
+div.view-uc-catalog div.views-row a {
 	text-decoration: none;
 	color: black;
 }
-div.view-online-store div.views-row h3 {
+div.view-uc-catalog div.views-row h3 {
 	margin-bottom: 5px;
 }
 
