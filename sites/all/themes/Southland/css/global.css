@@ -1,12 +1,4 @@
-/* @override 
-	http://southland-u.biz/sites/all/themes/Southland/css/global.css?m37an8
-	http://southland-u.biz/sites/all/themes/Southland/css/global.css?m3civ0
-	http://southland-u.biz/sites/all/themes/Southland/css/global.css?m3cjw8
-	http://southland-u.biz/sites/all/themes/Southland/css/global.css?m3czam
-	http://southland7u.loc/sites/all/themes/Southland/css/global.css?m3czam
-*/
 
-/* This file will hold styles for the mobile version of your website (mobile first). */
 
 html {background-color: #221708;
 }
@@ -95,8 +87,9 @@ border-top-right-radius: 0px;
 }
 
 .front #region-preface-first {
-	margin-right: 0;
+
 	margin-left: 0;
+	margin-right: 20px;
 }
 
 .front #region-preface-second {
@@ -900,10 +893,15 @@ div.always, div.secure {
 	font-size: 2.6em;
 	line-height: 1em;
 }
-
-div.cards {
+#block-block-15 div.cards {
+	clear: left;
+	margin-left: 12.5%;
+	margin-right: 12.5%;
 }
-
+#block-block-15 div.cards img {
+	height: auto;
+	width: 30%;
+}
 
 
 div.so-cartlinks {
@@ -913,6 +911,17 @@ div.so-cartlinks {
 #block-block-16 {
 	text-align: center;
 }
+
+div.next-button {
+	background: url(../images/next.png) no-repeat;
+	float: right;
+	width: 100px;
+	height: 34px;
+	margin-top: 0;
+	padding-top: 12px;
+}
+
+
 
 /* @end */
 
@@ -1027,6 +1036,94 @@ div#login-links {
 
 #user-login div div.item-list ul li.first a.ctools-use-modal.ctools-modal-modal-popup-medium.ctools-use-modal-processed {
 	font-weight: bold;
+}
+
+
+
+/* @end */
+
+/* @group Articles */
+
+/* @group Author Block */
+
+div.view-authors div.views-field-picture img {border-radius: 10px;float: left;margin-right: 10px;}
+
+div.view-authors div.views-field-field-first-name {float: left;margin-right: .5em; font-size: 1.5em;
+}
+
+div.view-authors div.views-field-field-last-name {margin-right: .5em; font-size: 1.5em;
+}
+
+#block-views-authors-block div.views-field-field-google- img {float: left;
+	
+}
+
+
+
+/* @end */
+
+
+
+/* @end */
+
+/* @group FPSS Products */
+
+#block-views-uc-catalog-block-1 h2.block-title {
+	font-size: 2em;
+}
+
+#block-views-uc-catalog-block-1  div.view-uc-catalog div.views-row {
+	border-top-style: none;
+	padding-top: 10px;
+	width: 300px;
+}
+
+div.view-display-id-block_1 div.views-slideshow-controls-bottom {
+	text-align: center;
+	display: block;
+}
+
+div.view-display-id-block_1  div.views-field.views-field-entity-id div.field-content {
+	height: 200px;
+}
+
+#block-views-uc-catalog-block-1 div.block-inner.clearfix {
+	text-align: center;
+}
+
+div.fpss-products div.field-content a img {
+	text-align: center;
+	float: none;
+}
+
+#views_slideshow_controls_text_next_uc_catalog-block_1 a {
+	width: 10px;
+	height: 40px;
+	background: url(../images/next.png) no-repeat;
+	padding-top: 17px;
+	padding-bottom: 20px;
+	padding-right: 20px;
+	color: transparent;
+	margin-top: 0;
+}
+
+#views_slideshow_controls_text_uc_catalog-block_1 {
+	margin-top: 20px;
+}
+
+#views_slideshow_controls_text_pause_uc_catalog-block_1 a {
+	display: none;
+}
+
+#views_slideshow_controls_text_previous_uc_catalog-block_1 a {
+		width: 10px;
+	height: 40px;
+	background: url(../images/prev.png) no-repeat;
+	padding-top: 17px;
+	padding-bottom: 20px;
+	padding-right: 20px;
+	color: transparent;
+	margin-top: 0;
 }
 
 

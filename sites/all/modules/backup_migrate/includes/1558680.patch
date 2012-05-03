@@ -1,0 +1,20 @@
+diff --git a/sites/all/modules/contrib/backup_migrate/includes/destinations.db.mysql.inc b/sites/all/modules/contrib/backup_migrate/includes/destinations.db.mysql.inc
+index d0dc2ca..ebcc3ea 100644
+--- a/sites/all/modules/contrib/backup_migrate/includes/destinations.db.mysql.inc
++++ b/sites/all/modules/contrib/backup_migrate/includes/destinations.db.mysql.inc
+@@ -183,6 +183,7 @@ class backup_migrate_destination_db_mysql extends backup_migrate_destination_db
+     // get auto_increment values and names of all tables
+     $tables = $this->query("show table status", array(), array('fetch' => PDO::FETCH_ASSOC));
+     foreach ($tables as $table) {
++      $table = array_change_key_case($table);
+       $out[$table['name']] = $table;
+     }
+     return $out;
+@@ -196,6 +197,7 @@ class backup_migrate_destination_db_mysql extends backup_migrate_destination_db
+     $result = $this->query("SHOW CREATE TABLE `". $table['name'] ."`", array(), array('fetch' => PDO::FETCH_ASSOC));
+     foreach ($result as $create) {
+       $out .= "DROP TABLE IF EXISTS `". $table['name'] ."`;\n";
++      $create = array_change_key_case($create);
+       // Remove newlines and convert " to ` because PDO seems to convert those for some reason.
+       $out .= strtr($create['create table'], array("\n" => ' ', '"' => '`'));
+       if ($table['auto_increment']) {
