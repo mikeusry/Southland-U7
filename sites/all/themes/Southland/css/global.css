@@ -1,4 +1,4 @@
-
+/* @override http://southland7u.loc/sites/all/themes/Southland/css/global.css?m3i1sl */
 
 html {background-color: #221708;
 }
@@ -47,6 +47,16 @@ textarea:active {
   -webkit-box-shadow: #06f 0 0 2px;
   box-shadow: #06f 0 0 2px;
   z-index: 1; /* For Opera */
+}
+
+div.tenents img {
+	margin-right: 10px;
+	margin-bottom: 10px;
+}
+div.tenents a {
+	color: #0C652E;
+	text-decoration: none;
+	font-size: 32px;
 }
 
 /* @group Zones.Sections.Regions */
@@ -1070,6 +1080,11 @@ div.view-authors div.views-field-field-last-name {margin-right: .5em; font-size:
 
 #block-views-uc-catalog-block-1 h2.block-title {
 	font-size: 2em;
+	margin-bottom: 0;
+}
+
+#block-views-uc-catalog-block-1 div.views-field.views-field-title-1 {
+	margin-top: 25px;
 }
 
 #block-views-uc-catalog-block-1  div.view-uc-catalog div.views-row {
@@ -1108,7 +1123,7 @@ div.fpss-products div.field-content a img {
 }
 
 #views_slideshow_controls_text_uc_catalog-block_1 {
-	margin-top: 20px;
+	margin-top: 10px;
 }
 
 #views_slideshow_controls_text_pause_uc_catalog-block_1 a {
