@@ -1,4 +1,8 @@
-/* @override http://southland7u.loc/sites/all/themes/Southland/css/global.css?m3i1sl */
+/* @override 
+	http://southland7u.loc/sites/all/themes/Southland/css/global.css?m3i1sl
+	http://southland-u.biz/sites/all/themes/Southland/css/global.css?m3i1sl
+	http://southland-u.biz/sites/all/themes/Southland/css/global.css?m3im7i
+*/
 
 html {background-color: #221708;
 }
@@ -56,7 +60,7 @@ div.tenents img {
 div.tenents a {
 	color: #0C652E;
 	text-decoration: none;
-	font-size: 32px;
+	font-size: 20px;
 }
 
 /* @group Zones.Sections.Regions */
@@ -515,7 +519,7 @@ div.product-info.sell-price span.uc-price {
 	margin-right: 10px;
 }
 
-.node-add-to-cart.form-submit, .node-add-to-cart.form-submit:hover {
+.node-product .node-add-to-cart.form-submit, .node-product .node-add-to-cart.form-submit:hover {
 	width: 220px;
 	height: 60px;
 	color: white;
@@ -531,6 +535,11 @@ div.product-info.sell-price span.uc-price {
 	background: url(../images/Organic-Cart.png) no-repeat 0;
 	margin-left: 10px;
 }
+
+#block-system-main div.view-id-uc_catalog div.views-row div.views-field-body {
+	min-height: 130px;
+}
+
 
 div.attributes div.form-type-select {
 	float: left;
@@ -791,7 +800,8 @@ ul.quicktabs-tabs.quicktabs-style-basic li.active a{
 div.view-uc-catalog div.views-row a img {
 	float: left;
 	margin-right: 10px;
-	margin-bottom: 30px;
+	margin-bottom: 20px;
+	margin-top: 10px;
 }
 
 div.view-uc-catalog div.views-row {
@@ -800,6 +810,7 @@ div.view-uc-catalog div.views-row {
 	padding-top: 10px;
 	min-height: 150px;
 	overflow: hidden;
+	margin-bottom: 10px;
 }
 
 div.view-uc-catalog div.views-row h2, 
@@ -813,6 +824,14 @@ div.view-uc-catalog div.views-row a {
 }
 div.view-uc-catalog div.views-row h3 {
 	margin-bottom: 5px;
+}
+
+div.view.view-uc-catalog div.views-field.views-field-view-node span.field-content a {
+	font-weight: bold;
+}
+div.view.view-uc-catalog div.views-field.views-field-view-node span.field-content a:hover {
+	color: red;
+	font-weight: bold;
 }
 
 /* @group Shopping Cart */
