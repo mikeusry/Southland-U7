@@ -17,7 +17,8 @@ Theme the loggedinblock that shows for logged-in users.
 */
 function Southland_lt_loggedinblock(){
   global $user;
-  $block_content = t('Welcome '). $block_content = check_plain($user->name) .' | ' . l(t('Your Account'), 'user').' | '. l(t('Log out'), 'logout');
+  $block_content = t('Welcome '). $block_content = check_plain($user->name) .' | ' . l(t('Your Account'), 'user').' | '. l(t('Log out'), 'user/logout');
   return $block_content;
 }
 ?>
+
