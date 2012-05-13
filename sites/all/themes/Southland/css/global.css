@@ -1,6 +1,6 @@
 /* @override 
-	http://www.southlandorganics.com/soil_conditioner/css/css_EhQPtk5zOEfwOCkrtKyyjtv74qD4kmqtkJ_c7ZBGHV8.css
-	http://www.southlandorganics.com/sites/all/themes/Southland/css/global.css?m3vg2l
+	http://www.southland-u.biz/sites/all/themes/Southland/css/global.css?m3xl41
+	http://www.southland-u.biz/sites/all/themes/Southland/css/global.css?m3xqrs
 */
 
 html {background-color: #221708;
@@ -465,6 +465,63 @@ div.productdescription a {
 
 
 /* @end */
+
+#block-block-17, #block-block-8 {
+	border-top: medium solid #4FB5DD;
+	border-bottom: medium solid #4FB5DD;
+	padding-bottom: 20px;
+	padding-top: 20px;
+}
+
+#block-block-17 a {
+	text-transform: lowercase;
+	text-decoration: none;
+	line-height: 29px;
+	text-align: center;
+}
+
+div.subscribe, div.fhf {
+	color: #4FB5DD;
+	text-decoration: none;
+	font-size: 30px;
+}
+
+div.to {text-align: center;}
+div.to a {color: #424242;
+	font-size: 22px;
+}
+
+#block-views-articles-block-2 {
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+
+#block-views-articles-block-2 div.views-field-title a {
+	color: #424242;
+	text-decoration: none;
+}
+#block-views-articles-block-2 div.views-field-title a:hover {
+	color: black;
+	text-decoration: none;
+	font-weight: bold;
+}
+
+#block-views-articles-block-2 div.views-field-title {
+	margin-bottom: 10px;
+}
+
+#block-views-authors-block {
+	padding: 10px;
+	border-radius: 10px;
+	background-color: #eaeaea;
+	margin-top: 10px;
+	margin-bottom: 0;
+}
+
+#block-views-authors-block h2 {
+	border-bottom: thin solid #0C652E;
+}
+
 
 
 
@@ -1090,8 +1147,7 @@ div.view-articles h2 a {
 }
 
 /* @group Author Block */
-
-div.view-authors div.views-field-picture img {border-radius: 10px;float: left;margin-right: 10px;}
+#block-views-authors-block div.views-field-field-picture-path img {border-radius: 10px;float: left;margin-right: 10px;}
 
 div.view-authors div.views-field-field-first-name {float: left;margin-right: .5em; font-size: 1.5em;
 }

@@ -220,6 +220,7 @@ function _webform_render_mailchimp($component, $value = NULL, $filter = TRUE) {
     '#value' => $mailchimp_list,
   );
 
+  $element['#weight'] = $component['weight'];
   return $element;
 }
 
