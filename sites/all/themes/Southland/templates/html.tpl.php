@@ -7,7 +7,7 @@
   <?php print $styles; ?>
   <?php print $scripts; ?>
   <!--[if lt IE 9]><script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-  <!-- Kissmetrics
+  <!-- Kissmetrics -->
   <script type="text/javascript">
   var _kmq = _kmq || [];
   function _kms(u){
