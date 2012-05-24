@@ -1,10 +1,21 @@
 /* @override 
 	http://www.southland-u.biz/sites/all/themes/Southland/css/global.css?m3xl41
 	http://www.southland-u.biz/sites/all/themes/Southland/css/global.css?m3xqrs
+	http://www.southland-u.biz/sites/all/themes/Southland/css/global.css?m4iytx
+	http://www.southland-u.biz/sites/all/themes/Southland/css/global.css?m4izxx
 */
 
 html {background-color: #221708;
 }
+
+article.node-product h2.node-title {
+	display: none;	
+}
+
+article.node-product div.field.field-name-uc-product-image a img {
+	margin-left: 10%;
+}
+
 
 p {
 	text-align: justify;
@@ -497,13 +508,14 @@ div.to a {color: #424242;
 }
 
 #block-views-articles-block-2 div.views-field-title a {
-	color: #424242;
+	color: #009800;
 	text-decoration: none;
+	text-transform: capitalize;
 }
 #block-views-articles-block-2 div.views-field-title a:hover {
 	color: black;
+	cursor: pointer;
 	text-decoration: none;
-	font-weight: bold;
 }
 
 #block-views-articles-block-2 div.views-field-title {
