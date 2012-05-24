@@ -16,9 +16,11 @@
 Theme the loggedinblock that shows for logged-in users.
 */
 function Southland_lt_loggedinblock(){
+	drupal_add_js();
   global $user;
   $block_content = t('Welcome '). $block_content = check_plain($user->name) .' | ' . l(t('Your Account'), 'user').' | '. l(t('Log out'), 'user/logout');
   return $block_content;
 }
+  global $user;
+  drupal_add_js(array('currentUser' => $user->name, 'userId' => $user->uid), 'setting');
 ?>
-

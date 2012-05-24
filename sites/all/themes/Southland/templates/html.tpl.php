@@ -17,6 +17,9 @@
     }, 1);
   }
   _kms('//i.kissmetrics.com/i.js');_kms('//doug1izaerwt3.cloudfront.net/b08cadcfe76cd4d2c7b6c90a11ef0ee409e60164.1.js');
+        var userName = Drupal.settings.currentUser;
+      console.log(userName);
+    _kmq.push(['identify', userName]);
 </script>
 	<!-- /kissmetrics -->
 </head>

@@ -759,10 +759,20 @@ div.node-product-display div.field-name-body div.field-item {
 }
 
 #block-ds-extras-video img {
-	height: auto;
-	width: 100%;
 }
 
+div.guarantee {
+	text-align: center;
+	padding: 7px;
+	border: thin solid green;
+	border-radius: 15px
+}
+
+div.refund {
+	text-align: center;
+	font-size: 10px;
+	color: gray;
+}
 
 
 /* @end */

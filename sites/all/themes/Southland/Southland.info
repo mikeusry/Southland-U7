@@ -11,6 +11,10 @@ regions[page_top] = Page Top
 regions[page_bottom] = Page Bottom
 regions[content] = Content
 
+;ADDITIONAL SCRIPTS
+
+scripts[] = js/kissmetrics.js
+
 ; ADDITIONAL REGIONS
 
 regions[user_first] = User Bar First
