@@ -100,7 +100,7 @@ class SecurePagesTestCase extends DrupalWebTestCase {
     $this->drupalGet('user', array('language' => $lang));
     $this->assertResponse(200);
     $this->assertUrl(url('user', array('https' => TRUE, 'absolute' => TRUE, 'language' => $lang)));
-    $this->assertTrue(strstr($this->url, '/fr/'), t('URL contains language prefix.'));
+    $this->assertTrue(strstr($this->url, 'fr/user'), t('URL contains language prefix.'));
 
     $this->drupalGet('', array('language' => $lang, 'https' => TRUE));
     $this->assertResponse(200);

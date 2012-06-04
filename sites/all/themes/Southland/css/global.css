@@ -1,19 +1,4 @@
-/* @override 
-	http://www.southland-u.biz/sites/all/themes/Southland/css/global.css?m3xl41
-	http://www.southland-u.biz/sites/all/themes/Southland/css/global.css?m3xqrs
-	http://www.southland-u.biz/sites/all/themes/Southland/css/global.css?m4iytx
-	http://www.southland-u.biz/sites/all/themes/Southland/css/global.css?m4izxx
-*/
-
 html {background-color: #221708;
-}
-
-article.node-product h2.node-title {
-	display: none;	
-}
-
-article.node-product div.field.field-name-uc-product-image a img {
-	margin-left: 10%;
 }
 
 
@@ -1168,6 +1153,14 @@ div.view-articles h2 a {
 	text-decoration: none;
 }
 
+div.view-articles div.views-row img {
+	border-radius: 10px
+}
+
+div.view-articles div.views-row {
+	clear: left;
+}
+
 /* @group Author Block */
 #block-views-authors-block div.views-field-field-picture-path img {border-radius: 10px;float: left;margin-right: 10px;}
 
@@ -1184,6 +1177,29 @@ div.view-authors div.views-field-field-last-name {margin-right: .5em; font-size:
 
 
 /* @end */
+
+#block-ds-extras-main-article-content ol li {
+	margin-left: 40px;
+	margin-bottom: 10px;
+}
+
+div.photo-credit {float: left;
+	margin-right: 10px;
+	margin-bottom: 10px;
+}
+
+div.photo-credit div.caption {
+	text-align: center;
+	font-size: 10px;
+}
+
+article.node-product h2.node-title {
+	display: none;	
+}
+
+article.node-product div.field.field-name-uc-product-image a img {
+	margin-left: 10%;
+}
 
 
 

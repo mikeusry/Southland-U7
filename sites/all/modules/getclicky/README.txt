@@ -28,3 +28,4 @@ HTML footer can confirm this by viewing the page source from
 your browser.
 
 'admin/' pages are automatically ignored by Getclicky.
+
