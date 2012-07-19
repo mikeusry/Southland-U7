@@ -1,0 +1,42 @@
+
+/* This file will hold styles that are loaded using the same media query as the narrow grid. */
+
+#region-menu nav.navigation ul.menu li.leaf {
+  float: left;
+  display: block;
+}
+
+#region-branding {
+	background: url(../images/SpringHill_Suites_AthensGA.jpg) no-repeat center bottom;
+	height: 131px;
+}
+
+#logo {
+	width: 140px;
+}
+
+.logo-img {
+  float: left;
+  text-align: left;
+}
+
+/* User */
+#region-user-first,
+#region-user-second {
+  margin: 0;
+  position: absolute;
+  right: 20px;
+  top: 0;
+  width: 50%;
+}
+
+/* Search Form */
+#block-search-form {
+  margin: 0;
+  position: absolute;
+  right: 0;
+  text-align: right;
+  top: 25px;
+  width: 300px;
+  z-index: 1;
+}

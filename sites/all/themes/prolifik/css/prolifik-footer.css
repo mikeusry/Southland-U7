@@ -1,0 +1,128 @@
+/* @override 
+	http://shs.loc/sites/all/themes/prolifik/css/prolifik-footer.css?m67bl9
+	http://www.southland-u.biz/sites/all/themes/prolifik/css/prolifik-footer.css?m4izxx
+	http://www.southland-u.biz/sites/all/themes/prolifik/css/prolifik-footer.css?m6ztkz
+*/
+
+/* Footer */
+#zone-footer-wrapper {
+    color: white;
+	background: #221708 url(../images/GrassRoots2.png) repeat-x 0 top;
+}
+
+#zone-footer-wrapper a,
+#zone-footer-wrapper a:link
+#zone-footer-wrapper a:visited {
+  color: #fff;
+}
+#zone-footer-wrapper .block .content {
+	color: white;
+}
+#zone-footer-wrapper div.block-title {
+  margin: 15px 0;
+}
+#zone-footer-wrapper div.block-title h2.block-title div.separator {
+  background-image: url(../images/separator-white.png);
+}
+#zone-footer-wrapper p {
+  margin: 0;
+  padding: 0;
+  color: white;
+}
+#region-footer-first,
+#region-footer-second {
+  margin: 0;
+  padding-bottom: 20px;
+  padding-top: 10px;
+}
+#region-footer-bottom {
+  margin: 0;
+  padding: 20px 0;
+  width: 100%;
+}
+#region-footer-bottom .region-inner {
+  padding: 0 20px;
+}
+#region-footer-bottom img {
+  vertical-align: middle;
+}
+#region-footer-bottom img.levelten {
+  position: relative;
+  top: 2px;
+}
+
+/* Legal Notices Menu */
+#region-footer-bottom .block {
+  float: left;
+}
+#region-footer-bottom #block-menu-menu-legal-notices {
+  float: right;
+}
+#region-footer-bottom #block-menu-menu-legal-notices .block-title {
+  display: none;
+}
+#region-footer-bottom #block-menu-menu-legal-notices li {
+  background: none;
+  float: left;
+  list-style: none;
+}
+
+body > #page #zone-footer h1, body > #page #zone-footer h2, body > #page #zone-footer h3,
+body > #page #zone-footer h4, body > #page #zone-footer h5, body > #page #zone-footer h6, #zone-footer div.block-title {
+  color: #fff;
+	margin-bottom: 0;
+	margin-top: 0;
+}
+
+#zone-footer label {
+	color: white;
+}
+
+div.top-button {
+	background-color: #221708;
+	float: left;
+	-webkit-border-radius: 10px;
+-moz-border-radius: 10px;
+border-radius: 10px;
+	padding: 4px 10px;
+	position: absolute;
+	bottom: 0;
+	margin-bottom: 10px;
+	left: 10px;
+}
+div.top-button a {
+	color: white;
+	text-decoration: none;
+}
+
+#block-block-5 {
+	margin-top: 35px;
+}
+#block-block-5 img {
+	position: absolute;
+	bottom: 0;
+	left: 120px;
+}
+
+#block-menu-menu-footer-main {
+	margin-top: 60px;
+}
+
+#block-menu-menu-footer-main ul.menu li {
+	list-style-type: none;
+	list-style-image: none;
+	display: inline;
+	margin-right: 20px;
+}
+
+#block-menu-menu-footer-main ul.menu li a {
+	color: #c0c0c0;
+	text-decoration: none;
+}
+
+#block-menu-menu-footer-main ul.menu {
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+

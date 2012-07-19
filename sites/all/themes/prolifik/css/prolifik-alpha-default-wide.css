@@ -1,0 +1,14 @@
+
+/* This file will hold styles that are loaded using the same media query as the wide grid. */
+#region-menu nav.navigation ul.menu li.leaf {
+  float: left;
+  display: block;
+}
+#region-branding {
+	background: url(../images/SpringHill_Suites_AthensGA.jpg) no-repeat center top;
+	height: 237px;
+}
+
+#logo {
+  width: 245px;
+}
