@@ -1,0 +1,8 @@
+filename = "SouthlandOrganics-2012-08-20T09-22-09"
+description = ""
+datestamp = "1345468932"
+generator = "Backup and Migrate (http://drupal.org/project/backup_migrate)"
+generatorversion = "7.x-2.x"
+sites[0][version] = "7.14"
+sites[0][name] = "Southland Organics"
+sites[0][url] = "https://remote.bluelasergroup.com/"

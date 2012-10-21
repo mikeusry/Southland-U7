@@ -1,3 +1,5 @@
+/* @override https://www.southlandorganics.com/sites/all/themes/Southland/css/global.css?m9j65u */
+
 html {background-color: #221708;
 }
 
@@ -771,8 +773,22 @@ div.refund {
 	color: gray;
 }
 
+div.field-name-field-benefits ul li {
+	list-style-position: inside;
+}
+
 
 /* @end */
+
+#block-ds-extras-documents h2.block-title, #block-ds-extras-application-rates h2.block-title, #block-ds-extras-product-benefits h2.block-title {
+	border-bottom: thin solid green;
+	font-size: 2em;
+	margin-bottom: 20px;
+}
+
+div.field-name-field-application-rates ul li {
+	list-style-position: inside;
+}
 
 /* @group Quicktabs */
 
