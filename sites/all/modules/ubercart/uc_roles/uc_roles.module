@@ -31,44 +31,41 @@ function uc_roles_cron() {
   $reminder_granularity = variable_get('uc_roles_reminder_granularity', 'never');
   $reminder_qty = variable_get('uc_roles_reminder_length', NULL);
 
-  $result = db_query("SELECT * FROM {uc_roles_expirations}");
+  $query = db_select('uc_roles_expirations', 'e')
+    ->fields('e');
+  $condition = db_or()
+    ->condition('e.expiration', REQUEST_TIME, '<=');
+  if ($reminder_granularity != 'never') {
+    $condition->condition(db_and()
+      ->isNull('e.notified')
+      ->condition('e.expiration', _uc_roles_get_expiration($reminder_qty, $reminder_granularity, REQUEST_TIME), '<=')
+    );
+  }
+  $query->condition($condition);
+
+  $result = $query->execute();
   foreach ($result as $expiration) {
     $account = user_load($expiration->uid);
 
-    // User has to contain roles to manage.
-    if (!is_array($account->roles) || !count($account->roles)) {
-      continue;
-    }
-
-    // Cleanup if this role was deleted off the user already.
-    if (!in_array($expiration->rid, array_keys($account->roles))) {
-      uc_roles_delete($account, $expiration->rid);
+    // Cleanup if user or role was deleted already.
+    if (!$account || !in_array($expiration->rid, array_keys($account->roles))) {
+      uc_roles_delete($expiration, $expiration->rid, TRUE);
     }
 
     // Role expired.
     elseif ($expiration->expiration <= REQUEST_TIME) {
-      uc_roles_revoke($account, $expiration->rid);
       rules_invoke_event('uc_roles_notify_revoke', $account, $expiration);
+      uc_roles_revoke($account, $expiration->rid);
     }
 
     // Remind the user about an upcoming expiration.
     elseif ($reminder_granularity != 'never') {
-      // Only if not already notified.
-      if (intval($expiration->notified) >= 1) {
-        continue;
-      }
-
-      // If we're past the expiration time minus the reminder time.
-      $threshold = _uc_roles_get_expiration(-$reminder_qty, $reminder_granularity, $expiration->expiration);
-      if ($threshold <= REQUEST_TIME) {
-        rules_invoke_event('uc_roles_notify_reminder', $account, $expiration);
-
-        db_update('uc_roles_expirations')
-          ->fields(array('notified' => 1))
-          ->condition('uid', $account->uid)
-          ->condition('rid', $expiration->rid)
-          ->execute();
-      }
+      rules_invoke_event('uc_roles_notify_reminder', $account, $expiration);
+      db_update('uc_roles_expirations')
+        ->fields(array('notified' => 1))
+        ->condition('uid', $account->uid)
+        ->condition('rid', $expiration->rid)
+        ->execute();
     }
   }
 }
@@ -109,14 +106,6 @@ function uc_roles_init() {
   $conf['i18n_variables'][] = 'uc_roles_default_expiration_header';
   $conf['i18n_variables'][] = 'uc_roles_default_expiration_message';
   $conf['i18n_variables'][] = 'uc_roles_default_expiration_title';
-  $conf['i18n_variables'][] = 'uc_roles_grant_notification_message';
-  $conf['i18n_variables'][] = 'uc_roles_grant_notification_subject';
-  $conf['i18n_variables'][] = 'uc_roles_reminder_message';
-  $conf['i18n_variables'][] = 'uc_roles_reminder_subject';
-  $conf['i18n_variables'][] = 'uc_roles_renewal_notification_message';
-  $conf['i18n_variables'][] = 'uc_roles_renewal_notification_subject';
-  $conf['i18n_variables'][] = 'uc_roles_revocation_notification_message';
-  $conf['i18n_variables'][] = 'uc_roles_revocation_notification_subject';
 }
 
 /**
@@ -1073,7 +1062,7 @@ function uc_roles_delete($account, $rid = NULL, $silent = FALSE) {
  * @param $silent
  *   When set to TRUE will suppress any Drupal messages from this function.
  */
-function uc_roles_revoke($account, $rid, $silent = FALSE) {
+function uc_roles_revoke(&$account, $rid, $silent = FALSE) {
   global $user;
 
   // Remove this role from the user's list.
@@ -1208,9 +1197,12 @@ function uc_roles_renew($account, $rid, $timestamp, $silent = FALSE) {
     return;
   }
 
-  // Update the expiration date.
+  // Update the expiration date and reset the notified flag.
   db_update('uc_roles_expirations')
-    ->fields(array('expiration' => $timestamp))
+    ->fields(array(
+      'expiration' => $timestamp,
+      'notified' => NULL,
+    ))
     ->condition('uid', $account->uid)
     ->condition('rid', $rid)
     ->execute();

@@ -520,7 +520,7 @@ function uc_order_create_form($form, &$form_state) {
           '#title' => t('Select customer'),
           '#description' => $max ? t('More than !limit results found. Refine your search to find other customers.', array('!limit' => $limit - 1)) : '',
           '#options' => $options,
-          '#default_value' => reset(array_keys($options)),
+          '#default_value' => key($options),
         );
       }
       else {
@@ -1058,6 +1058,9 @@ function uc_order_edit_form($form, &$form_state, $order) {
 
   field_attach_form('uc_order', $order, $form, $form_state);
 
+  form_load_include($form_state, 'inc', 'uc_store', 'includes/uc_ajax_attach');
+  $form['#process'][] = 'uc_ajax_process_form';
+
   return $form;
 }
 
@@ -1169,7 +1172,7 @@ function theme_uc_order_edit_form($variables) {
     if (in_array('edit', $pane['show']) && variable_get('uc_order_pane_' . $id . '_show_edit', TRUE)) {
       $func = $pane['callback'];
       if (function_exists($func) && ($contents = $func('edit-theme', $form['#order'], $form)) != NULL) {
-        $output .= '<div class="order-pane ' . $pane['class'] . '">';
+        $output .= '<div class="order-pane ' . $pane['class'] . '" id="order-pane-' . $id . '">';
         $title = isset($pane['display title']) ? $pane['display title'] : $pane['title'];
         if ($title) {
           $output .= '<div class="order-pane-title">' . $title . ':' . '</div>';
@@ -1348,8 +1351,9 @@ function uc_order_log($order) {
   $rows = array();
   foreach ($result as $change) {
     $rows[] = array(
-      'data' => array(format_date($change->created, 'short'), theme('uc_uid', array('uid' => $change->uid)), $change->changes),
-      'valign' => 'top',
+      format_date($change->created, 'short'),
+      theme('uc_uid', array('uid' => $change->uid)),
+      $change->changes,
     );
   }
 

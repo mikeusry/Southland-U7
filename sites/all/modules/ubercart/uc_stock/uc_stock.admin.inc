@@ -35,13 +35,12 @@ function uc_stock_settings_form($form, &$form_state) {
     '#title' => t('Message text'),
     '#default_value' => variable_get('uc_stock_threshold_notification_message', uc_get_message('uc_stock_threshold_notification_message')),
     '#description' => t('The message the user receives when the stock level reaches its threshold value.'),
-    '#text_format' => variable_get('uc_stock_threshold_notification_message_format', filter_default_format()),
     '#rows' => 10,
   );
 
   if (module_exists('token')) {
     $form['token_tree'] = array(
-      '#markup' => theme('token_tree', array('token_types' => array('uc_order', 'site', 'store'))),
+      '#markup' => theme('token_tree', array('token_types' => array('uc_order', 'uc_stock', 'node', 'site', 'store'))),
     );
   }
 

@@ -48,6 +48,21 @@ function uc_cart_view() {
 }
 
 /**
+ * Confirm that the customer wants to empty their cart.
+ */
+function uc_cart_empty_confirm($form, &$form_state) {
+  return confirm_form($form, t('Are you sure you want to empty your shopping cart?'), 'cart');
+}
+
+/**
+ * Submission handler to empty the cart after confirmations.
+ */
+function uc_cart_empty_confirm_submit($form, &$form_state) {
+  uc_cart_empty();
+  $form_state['redirect'] = 'cart';
+}
+
+/**
  * Displays the cart checkout page built of checkout panes from enabled modules.
  */
 function uc_cart_checkout() {
@@ -92,8 +107,8 @@ function uc_cart_checkout() {
       // there has been no activity for 10 minutes (to prevent identity theft).
       if (uc_order_status_data($order->order_status, 'state') != 'in_checkout' ||
           ($user->uid > 0 && $user->uid != $order->uid) ||
-          $order->modified < REQUEST_TIME - 600) {
-        if (uc_order_status_data($order->order_status, 'state') == 'in_checkout' && $order->modified < REQUEST_TIME - 600) {
+          $order->modified < REQUEST_TIME - UC_CART_ORDER_TIMEOUT) {
+        if (uc_order_status_data($order->order_status, 'state') == 'in_checkout' && $order->modified < REQUEST_TIME - UC_CART_ORDER_TIMEOUT) {
           // Mark expired orders as abandoned.
           uc_order_update_status($order->order_id, 'abandoned');
         }
@@ -158,8 +173,9 @@ function uc_cart_checkout() {
  * @param $order
  *   The order that is being checked out.
  *
+ * @see uc_cart_checkout_form_process()
  * @see uc_cart_checkout_form_validate()
- * @see uc_cart_checkout_form_review()
+ * @see uc_cart_checkout_form_submit()
  * @see uc_cart_checkout_review()
  * @see theme_uc_cart_checkout_form()
  * @ingroup forms
@@ -278,6 +294,9 @@ function uc_cart_checkout_form($form, &$form_state, $order) {
     '#type' => 'submit',
     '#value' => t('Review order'),
   );
+
+  form_load_include($form_state, 'inc', 'uc_store', 'includes/uc_ajax_attach');
+  $form['#process'][] = 'uc_ajax_process_form';
 
   unset($_SESSION['uc_checkout'][$order->order_id]);
 
@@ -455,18 +474,18 @@ function theme_uc_cart_checkout_review($variables) {
           else {
             $border = '';
           }
-          $output .= '<tr valign="top"' . $border . '>';
+          $output .= '<tr' . $border . '>';
           $output .= '<td class="title-col">' . $row['title'] . ':</td>';
           $output .= '<td class="data-col">' . $row['data'] . '</td>';
           $output .= '</tr>';
         }
         else {
-          $output .= '<tr valign="top"><td colspan="2">' . $row . '</td></tr>';
+          $output .= '<tr><td colspan="2">' . $row . '</td></tr>';
         }
       }
     }
     else {
-      $output .= '<tr valign="top"><td colspan="2">' . $data . '</td></tr>';
+      $output .= '<tr><td colspan="2">' . $data . '</td></tr>';
     }
   }
 

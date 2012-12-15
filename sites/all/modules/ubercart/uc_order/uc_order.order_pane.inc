@@ -316,6 +316,14 @@ function uc_order_product_select_form_validate($form, &$form_state) {
  * @ingroup forms
  */
 function uc_order_add_product_form($form, &$form_state, $order, $node) {
+  $data = array();
+  if (isset($form_state['values']['product_controls']['qty'])) {
+    $data += module_invoke_all('uc_add_to_cart_data', $form_state['values']['product_controls']);
+  }
+  if (!empty($node->data) && is_array($node->data)) {
+    $data += $node->data;
+  }
+  $node = uc_product_load_variant(intval($form_state['values']['product_controls']['nid']), $data);
   $form['title'] = array(
     '#markup' => '<h3>' . check_plain($node->title) . '</h3>',
   );
@@ -471,8 +479,8 @@ function uc_order_pane_products_select($form, &$form_state) {
       ':model' => $search,
     );
 
-    $result = db_query("SELECT n.nid, n.title FROM {node} AS n LEFT JOIN "
-      . "{uc_products} AS p ON n.nid = p.nid WHERE n.type IN "
+    $result = db_query("SELECT n.nid, n.title FROM {node} n LEFT JOIN "
+      . "{uc_products} p ON n.nid = p.nid WHERE n.type IN "
       . "(:types) AND (n.title LIKE :title OR p.model LIKE :model)"
       . " ORDER BY n.title", $search_args);
   }
@@ -583,13 +591,13 @@ function uc_order_edit_products_remove($form, &$form_state) {
  * AJAX callback to render the order product controls.
  */
 function uc_order_pane_products_ajax_callback($form, &$form_state) {
-  $commands[] = ajax_command_replace('#product-controls', drupal_render($form['product_controls']));
-  $commands[] = ajax_command_prepend('#product-controls', theme('status_messages'));
+  $commands[] = ajax_command_replace('#product-controls', trim(drupal_render($form['product_controls'])));
+  $commands[] = ajax_command_prepend('#product-controls', trim(theme('status_messages')));
 
   if (isset($form_state['refresh_products']) && $form_state['refresh_products']) {
-    $commands[] = ajax_command_replace('#order-edit-products', drupal_render($form['products']));
-    $commands[] = ajax_command_replace('#order-line-items', drupal_render($form['line_items']));
-    $commands[] = ajax_command_prepend('#order-edit-products', theme('status_messages'));
+    $commands[] = ajax_command_replace('#order-edit-products', trim(drupal_render($form['products'])));
+    $commands[] = ajax_command_replace('#order-line-items', trim(drupal_render($form['line_items'])));
+    $commands[] = ajax_command_prepend('#order-edit-products', trim(theme('status_messages')));
   }
 
   return array('#type' => 'ajax', '#commands' => $commands);
@@ -816,7 +824,7 @@ function uc_order_pane_line_items_remove($form, &$form_state) {
  * AJAX callback to render the line items.
  */
 function uc_order_pane_line_items_update($form, &$form_state) {
-  $commands[] = ajax_command_replace('#order-line-items', drupal_render($form['line_items']));
+  $commands[] = ajax_command_replace('#order-line-items', trim(drupal_render($form['line_items'])));
   $commands[] = ajax_command_prepend('#order-line-items', theme('status_messages'));
 
   return array('#type' => 'ajax', '#commands' => $commands);
@@ -1208,27 +1216,27 @@ function uc_op_products_edit_table() {
 function uc_op_order_comments_view_table($comments) {
   $table = array(
     '#type' => 'tapir_table',
-    '#attributes' => array('class' => array('order-pane-table')),
+    '#attributes' => array('class' => array('order-pane-table uc-order-comments')),
   );
 
   $table['#columns']['date'] = array(
-    'cell' => array('data' => t('Date'), 'class' => array('text-center')),
+    'cell' => array('data' => t('Date'), 'class' => array('date')),
     'weight' => 0,
   );
   $table['#columns']['user'] = array(
-    'cell' => t('User'),
+    'cell' => array('data' => t('User'), 'class' => array('user')),
     'weight' => 1,
   );
   $table['#columns']['notified'] = array(
-    'cell' => t('Notified'),
+    'cell' => array('data' => t('Notified'), 'class' => array('notified')),
     'weight' => 2,
   );
   $table['#columns']['status'] = array(
-    'cell' => array('data' => t('Status'), 'class' => array('text-center')),
+    'cell' => array('data' => t('Status'), 'class' => array('status')),
     'weight' => 3,
   );
   $table['#columns']['comment'] = array(
-    'cell' => array('data' => t('Comment'), 'width' => '80%'),
+    'cell' => array('data' => t('Comment'), 'class' => array('message')),
     'weight' => 4,
   );
 
@@ -1237,23 +1245,24 @@ function uc_op_order_comments_view_table($comments) {
       $data = array();
       $data['date'] = array(
         '#markup' => format_date($comment->created, 'short'),
-        '#cell_attributes' => array('align' => 'center'),
+        '#cell_attributes' => array('class' => 'date'),
       );
       $data['user'] = array(
         '#markup' => theme('uc_uid', array('uid' => $comment->uid)),
-        '#cell_attributes' => array('align' => 'center'),
+        '#cell_attributes' => array('class' => 'user'),
       );
       $icon = $comment->notified ? 'true-icon.gif' : 'false-icon.gif';
       $data['notified'] = array(
         '#markup' => theme('image', array('path' => drupal_get_path('module', 'uc_order') . '/images/' . $icon)),
-        '#cell_attributes' => array('align' => 'center'),
+        '#cell_attributes' => array('class' => 'notified'),
       );
       $data['status'] = array(
         '#markup' => $comment->title,
-        '#cell_attributes' => array('align' => 'center'),
+        '#cell_attributes' => array('class' => 'status'),
       );
       $data['comment'] = array(
         '#markup' => check_plain($comment->message),
+        '#cell_attributes' => array('class' => 'message'),
       );
       $table['#rows'][] = $data;
     }
@@ -1275,19 +1284,19 @@ function uc_op_order_comments_view_table($comments) {
 function uc_op_admin_comments_view_table($comments) {
   $table = array(
     '#type' => 'tapir_table',
-    '#attributes' => array('class' => array('order-pane-table')),
+    '#attributes' => array('class' => array('order-pane-table uc-order-comments')),
   );
 
   $table['#columns']['date'] = array(
-    'cell' => array('data' => t('Date'), 'class' => array('text-center')),
+    'cell' => array('data' => t('Date'), 'class' => array('date')),
     'weight' => 0,
   );
   $table['#columns']['user'] = array(
-    'cell' => array('data' => t('User'), 'class' => array('text-center')),
+    'cell' => array('data' => t('User'), 'class' => array('user')),
     'weight' => 1,
   );
   $table['#columns']['comment'] = array(
-    'cell' => array('data' => t('Comment'), 'width' => '80%'),
+    'cell' => array('data' => t('Comment'), 'class' => array('message')),
     'weight' => 2,
   );
 
@@ -1296,15 +1305,15 @@ function uc_op_admin_comments_view_table($comments) {
       $data = array();
       $data['date'] = array(
         '#markup' => format_date($comment->created, 'short'),
-        '#cell_attributes' => array('align' => 'center', 'valign' => 'top'),
+        '#cell_attributes' => array('class' => 'date'),
       );
       $data['user'] = array(
         '#markup' => theme('uc_uid', array('uid' => $comment->uid)),
-        '#cell_attributes' => array('align' => 'center', 'valign' => 'top'),
+        '#cell_attributes' => array('class' => 'user'),
       );
       $data['comment'] = array(
         '#markup' => filter_xss_admin($comment->message),
-        '#cell_attributes' => array('valign' => 'top'),
+        '#cell_attributes' => array('class' => 'message'),
       );
       $table['#rows'][] = $data;
     }

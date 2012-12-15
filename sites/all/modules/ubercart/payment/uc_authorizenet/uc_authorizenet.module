@@ -255,7 +255,7 @@ function uc_authorizenet_charge($order_id, $amount, $data) {
         return array('success' => FALSE, 'message' => $message);
       }
       else {
-        return array('success' => TRUE, 'message' => t('New customer profile created successfully at Authorize.Net.'));
+        return array('success' => TRUE, 'log_payment' => FALSE, 'message' => t('New customer profile created successfully at Authorize.Net.'));
       }
 
     // Accommodate all other transaction types.
@@ -387,9 +387,10 @@ function _uc_authorizenet_cim_profile_charge_request($order, $amount, $data) {
       'refId' => substr($order->order_id . '-' . REQUEST_TIME, 0, 20),
       'transaction' => array(
         'profileTransAuthCapture' => array(
-          'amount' => $amount,
+          'amount' => uc_currency_format($amount, FALSE, FALSE, '.'),
           'customerProfileId' => $profile['customerProfileId'],
           'customerPaymentProfileId' => $profile['customerPaymentProfileId'],
+          'customerShippingAddressId' => $profile['customerAddressId'],
           'order' => array(
             'invoiceNumber' => $order->order_id,
           ),
@@ -510,6 +511,9 @@ function _uc_authorizenet_charge($order, $amount, $data) {
     $submit_data['x_trans_id'] = $data['auth_id'];
   }
 
+  // Allow other modules to alter the transaction.
+  drupal_alter('uc_authorizenet_transaction', $submit_data);
+
   // Determine the correct URL based on the transaction mode.
   if (variable_get('uc_authnet_aim_txn_mode', 'live_test') == 'developer_test') {
     $post_url = variable_get('uc_authnet_api_test_gateway_url', UC_AUTHORIZENET_TEST_GATEWAY_URL);
@@ -531,7 +535,7 @@ function _uc_authorizenet_charge($order, $amount, $data) {
   curl_setopt($ch, CURLOPT_POST, 1);
   curl_setopt($ch, CURLOPT_POSTFIELDS, implode('&', $post_fields));
   curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-  curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+  curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 1);
   curl_setopt($ch, CURLOPT_NOPROGRESS, 1);
   curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 0);
   $result = curl_exec($ch);
@@ -696,7 +700,7 @@ function uc_authorizenet_xml_api($server, $xml) {
   curl_setopt($ch, CURLOPT_HEADER, 1);
   curl_setopt($ch, CURLOPT_POSTFIELDS, $xml);
   curl_setopt($ch, CURLOPT_POST, 1);
-  curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+  curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 1);
   $response = curl_exec($ch);
 
   // Log any errors to the watchdog.
